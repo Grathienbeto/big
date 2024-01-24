@@ -1,11 +1,11 @@
+import { Outlet } from "react-router-dom";
 import { Navbar } from "../Components/Navbar";
-import { HomeInfo } from "./HomeInfo";
 
-export const Home = () => {
+export const Root = () => {
   return (
     <div>
       <Navbar />
-      <HomeInfo />
+      <Outlet />
     </div>
   );
 };

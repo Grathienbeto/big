@@ -11,12 +11,20 @@ export const Navbar = () => {
             </Link>
           </div>
           <div>
-            <Link
-              to={"/contacto"}
-              className="text-primaryLight text-xl font-primary"
-            >
-              Contacto
-            </Link>
+            <div className="flex gap-5">
+              <Link
+                to={"/contacto"}
+                className="text-primaryLight text-lg font-primary"
+              >
+                Contacto
+              </Link>
+              <Link
+                to={"/ayuda"}
+                className="text-primaryLight text-lg font-primary"
+              >
+                Ayuda
+              </Link>
+            </div>
           </div>
         </div>
       </div>

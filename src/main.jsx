@@ -5,24 +5,36 @@ import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Home } from "./Home/Home";
-import { Contacto } from "./Contacto/Contacto";
+import { Root } from "./Routes/Root";
 import { ErrorPage } from "./ErrorPage/ErrorPage";
-import { CrearTorneo } from "./CrearTorneo/CrearTorneo";
+import { Home } from "./Routes/Home";
+import { Contacto } from "./Routes/Contacto";
+import { CrearTorneo } from "./Routes/CrearTorneo";
+import { Ayuda } from "./Routes/Ayuda";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Root />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/contacto",
-    element: <Contacto />,
-  },
-  {
-    path: "/crear_torneo",
-    element: <CrearTorneo />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/contacto",
+        element: <Contacto />,
+      },
+      {
+        path: "/ayuda",
+        element: <Ayuda />,
+      },
+      {
+        path: "/crear_torneo",
+        element: <CrearTorneo />,
+      },
+    ],
   },
 ]);
 
