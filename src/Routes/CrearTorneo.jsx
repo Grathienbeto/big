@@ -1,3 +1,9 @@
+import { CrearTorneoForm } from "../CrearTorneo/CrearTorneoForm";
+
 export const CrearTorneo = () => {
-  return <div>CREAR TORNEO</div>;
+  return (
+    <>
+      <CrearTorneoForm />
+    </>
+  );
 };

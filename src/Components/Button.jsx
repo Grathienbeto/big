@@ -8,8 +8,8 @@ export const Button = (props) => {
       to={"/crear_torneo"}
       className={
         size === "big"
-          ? `text-light font-primary border-2 rounded-xl border-contrast text-2xl px-10 py-2`
-          : `text-light font-primary border-2 rounded-xl border-contrast text-xl px-5 py-2`
+          ? `text-light font-primary border-2 rounded-xl border-contrast text-center text-2xl px-10 py-2`
+          : `text-light font-primary border-2 rounded-xl border-contrast text-center text-xl px-5 py-2`
       }
     >
       {content}

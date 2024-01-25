@@ -12,7 +12,7 @@ export const HomeInfo = () => {
           </div>
           <div className="text-primaryLight mt-10">
             <p className="text-lg">
-              Empezá el proceso apreatando del boton de "Crear Torneo"
+              Empezá el proceso apretando del boton de "Crear Torneo"
             </p>
 
             <p className="mt-5 text-lg">

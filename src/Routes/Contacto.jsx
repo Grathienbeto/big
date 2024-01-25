@@ -1,3 +1,9 @@
+import { FormularioContacto } from "../Contacto/FormularioContacto";
+
 export const Contacto = () => {
-  return <div>Contacto</div>;
+  return (
+    <div className="p-5">
+      <FormularioContacto />
+    </div>
+  );
 };

@@ -2,7 +2,7 @@ import { HomeInfo } from "../Home/HomeInfo";
 
 export const Home = () => {
   return (
-    <div>
+    <div className="">
       <HomeInfo />
     </div>
   );
