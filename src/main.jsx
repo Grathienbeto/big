@@ -11,6 +11,7 @@ import { Home } from "./Routes/Home";
 import { Contacto } from "./Routes/Contacto";
 import { CrearTorneo } from "./Routes/CrearTorneo";
 import { Ayuda } from "./Routes/Ayuda";
+import { TorneoVista } from "./Routes/TorneoVista";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/crear_torneo",
         element: <CrearTorneo />,
+      },
+      {
+        path: "/torneo",
+        element: <TorneoVista />,
       },
     ],
   },
