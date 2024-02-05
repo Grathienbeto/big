@@ -96,20 +96,20 @@ export const CrearTorneoForm = () => {
     setCanchas(intCanchas);
   };
 
-  const handleChangeFechaInicio = (e) => {
-    setFechaInicio(e.target.value);
-  };
-
-  const handleChangeFechaFin = (e) => {
-    setFechaFin(e.target.value);
-  };
-
   const handleEmail = (e) => {
     if (e.target.value === "") {
       console.log("No se puede ingresar un mail vacio");
       return;
     }
     setEmail(e.target.value);
+  };
+
+  const handleChangeFechaInicio = (e) => {
+    setFechaInicio(e.target.value);
+  };
+
+  const handleChangeFechaFin = (e) => {
+    setFechaFin(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -123,10 +123,8 @@ export const CrearTorneoForm = () => {
       email,
     };
 
-    console.log(JSON.stringify(torneo));
-
     try {
-      const response = await fetch("http://localhost:8080/torneos", {
+      const response = await fetch("http://localhost:8080/api/torneos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -144,7 +142,7 @@ export const CrearTorneoForm = () => {
     }
 
     // CAMBIAR LINK A LA PAGINA DE AGREGAR PAREJAS
-    navigate("/torneo");
+    navigate(`/torneo/${cripticId}`);
   };
 
   return (
@@ -181,7 +179,7 @@ export const CrearTorneoForm = () => {
             Horarios
           </label>
           <input
-            type="text"
+            type="time"
             id="horarios"
             name="horarios"
             className="font-primary block w-full"

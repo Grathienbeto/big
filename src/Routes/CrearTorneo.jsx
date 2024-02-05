@@ -1,9 +1,9 @@
-import { CrearTorneoForm } from "../CrearTorneo/CrearTorneoForm";
+import { MultiStepForm } from "../CrearTorneo/MultiStepForm";
 
 export const CrearTorneo = () => {
   return (
     <>
-      <CrearTorneoForm />
+      <MultiStepForm />
     </>
   );
 };
