@@ -1,23 +1,20 @@
+import PropType from "prop-types";
 import { SingleCategory } from "./SingleCategory";
-import { useState, useEffect } from "react";
 
-export const Categoria = ({ data, setData }) => {
-  const { numCategorias, categorias } = { ...data };
+export const Categoria = ({ data }) => {
+  const { categorias } = { ...data };
 
   return (
     <>
       {categorias.map((elem, i) => (
         <div key={i}>
-          <SingleCategory
-            elem={elem}
-            initialCategories={categorias}
-            data={data}
-            setData={setData}
-            categorias={categorias}
-            i={i}
-          />
+          <SingleCategory categorias={categorias} i={i} />
         </div>
       ))}
     </>
   );
+};
+
+Categoria.propTypes = {
+  data: PropType.object,
 };

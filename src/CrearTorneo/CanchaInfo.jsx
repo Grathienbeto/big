@@ -1,3 +1,5 @@
+import PropType from "prop-types";
+
 export const CanchaInfo = ({ data, setData }) => {
   const { canchas, numCategorias, email, categorias } = { ...data };
 
@@ -85,4 +87,9 @@ export const CanchaInfo = ({ data, setData }) => {
       </div>
     </>
   );
+};
+
+CanchaInfo.propTypes = {
+  data: PropType.object,
+  setData: PropType.func,
 };

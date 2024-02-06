@@ -1,11 +1,12 @@
-export const Horarios = ({
-  fechaInicio,
-  horaInicioI,
-  horaFinI,
-  fechaFin,
-  horaInicioF,
-  horaFinF,
-}) => {
+export const Horarios = ({ data, setData }) => {
+  const {
+    fechaInicio,
+    horaInicioI,
+    horaFinI,
+    fechaFin,
+    horaInicioF,
+    horaFinF,
+  } = { ...data };
   return (
     <>
       <div>
@@ -25,7 +26,7 @@ export const Horarios = ({
           id="fecha_inicio"
           name="fecha_inicio"
           className="font-primary block w-full"
-          // onChange={handleChangeFechaInicio}
+          onChange={(e) => setData({ ...data, fechaInicio: e.target.value })}
           required={true}
         />
       </div>
@@ -43,6 +44,7 @@ export const Horarios = ({
             id="horaInicioI"
             name="horaInicioI"
             className="font-primary block w-full"
+            onChange={(e) => setData({ ...data, horaInicioI: e.target.value })}
           />
         </div>
         <div className="w-[30%]">
@@ -58,6 +60,7 @@ export const Horarios = ({
             id="horaFinI"
             name="horaFinI"
             className="font-primary block w-full"
+            onChange={(e) => setData({ ...data, horaFinI: e.target.value })}
           />
         </div>
       </div>
@@ -75,7 +78,7 @@ export const Horarios = ({
           id="fecha_fin"
           name="fecha_fin"
           className="font-primary block w-full"
-          // onChange={handleChangeFechaFin}
+          onChange={(e) => setData({ ...data, fechaFin: e.target.value })}
           required={true}
         />
       </div>
@@ -94,6 +97,7 @@ export const Horarios = ({
             id="horaInicioF"
             name="horaInicioF"
             className="font-primary block w-full"
+            onChange={(e) => setData({ ...data, horaInicioF: e.target.value })}
           />
         </div>
         <div className="w-[30%]">
@@ -109,6 +113,7 @@ export const Horarios = ({
             id="horaFinF"
             name="horaFinF"
             className="font-primary block w-full"
+            onChange={(e) => setData({ ...data, horaFinF: e.target.value })}
           />
         </div>
       </div>

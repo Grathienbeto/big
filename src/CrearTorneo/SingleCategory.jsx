@@ -1,23 +1,33 @@
+import PropType from "prop-types";
+
 export const SingleCategory = (props) => {
-  const { data, setData, initialCategories, elem, categorias, i } = props;
+  const { categorias, i } = props;
+
+  const handleChangeCategoria = (event) => {
+    categorias[i].categoria = event.target.value;
+  };
+  const handleChangeGenero = (event) => {
+    categorias[i].genero = event.target.value;
+  };
+
   return (
     <div className="border-b-contrast border-dark border-2 pb-5 mt-5">
       <div className="font-primary flex justify-between ">
         <label htmlFor={`categoria${i}`} className="text-light text-xl">
           Categoria {i + 1}
         </label>
-        <select name={`categoria${i}`}>
+        <select name={`categoria${i}`} onChange={handleChangeCategoria}>
           <option value=""></option>
-          <option value="1">7º</option>
-          <option value="2">6º</option>
-          <option value="3">5º</option>
+          <option value="7">7º</option>
+          <option value="6">6º</option>
+          <option value="5">5º</option>
           <option value="4">4º</option>
-          <option value="5">3º</option>
-          <option value="6">2º</option>
-          <option value="7">1º</option>
-          <option value="8">S12</option>
-          <option value="9">S14</option>
-          <option value="0">S16</option>
+          <option value="3">3º</option>
+          <option value="2">2º</option>
+          <option value="1">1º</option>
+          <option value="12">S12</option>
+          <option value="14">S14</option>
+          <option value="16">S16</option>
         </select>
       </div>
       <div className="flex items-center mt-5 justify-between">
@@ -29,8 +39,8 @@ export const SingleCategory = (props) => {
               type="radio"
               name={`genero${i}`}
               id={`M${i}`}
-              value={0}
-              className=""
+              value="M"
+              onChange={handleChangeGenero}
             />
           </div>
           <div className="flex flex-col  ">
@@ -39,8 +49,8 @@ export const SingleCategory = (props) => {
               type="radio"
               name={`genero${i}`}
               id={`F${i}`}
-              value={1}
-              className=""
+              value="F"
+              onChange={handleChangeGenero}
             />
           </div>
           <div className="flex flex-col  ">
@@ -49,12 +59,20 @@ export const SingleCategory = (props) => {
               type="radio"
               name={`genero${i}`}
               id={`Mix${i}`}
-              value={2}
-              className=""
+              value="Mix"
+              onChange={handleChangeGenero}
             />
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+SingleCategory.propTypes = {
+  data: PropType.object,
+  setData: PropType.func,
+  elem: PropType.object,
+  categorias: PropType.array,
+  i: PropType.number,
 };
