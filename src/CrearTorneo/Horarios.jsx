@@ -1,4 +1,11 @@
-export const Horarios = () => {
+export const Horarios = ({
+  fechaInicio,
+  horaInicioI,
+  horaFinI,
+  fechaFin,
+  horaInicioF,
+  horaFinF,
+}) => {
   return (
     <>
       <div>
@@ -13,6 +20,7 @@ export const Horarios = () => {
           Fecha Inicio
         </label>
         <input
+          value={fechaInicio}
           type="date"
           id="fecha_inicio"
           name="fecha_inicio"
@@ -30,6 +38,7 @@ export const Horarios = () => {
             Hora Inicio
           </label>
           <input
+            value={horaInicioI}
             type="time"
             id="horaInicioI"
             name="horaInicioI"
@@ -44,6 +53,7 @@ export const Horarios = () => {
             Hora Fin
           </label>
           <input
+            value={horaFinI}
             type="time"
             id="horaFinI"
             name="horaFinI"
@@ -60,6 +70,7 @@ export const Horarios = () => {
           Fecha Fin
         </label>
         <input
+          value={fechaFin}
           type="date"
           id="fecha_fin"
           name="fecha_fin"
@@ -78,6 +89,7 @@ export const Horarios = () => {
             Hora Inicio
           </label>
           <input
+            value={horaInicioF}
             type="time"
             id="horaInicioF"
             name="horaInicioF"
@@ -92,6 +104,7 @@ export const Horarios = () => {
             Hora Fin
           </label>
           <input
+            value={horaFinF}
             type="time"
             id="horaFinF"
             name="horaFinF"

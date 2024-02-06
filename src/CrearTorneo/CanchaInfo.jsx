@@ -1,4 +1,23 @@
-export const CanchaInfo = () => {
+export const CanchaInfo = ({ data, setData }) => {
+  const { canchas, numCategorias, email, categorias } = { ...data };
+
+  const handleCategorias = () => {
+    while (categorias.length > 0) {
+      categorias.pop();
+    }
+    if (categorias.length === numCategorias) {
+      console.log("");
+    } else if (categorias.length < numCategorias) {
+      for (let i = 0; i < numCategorias; i++) {
+        categorias.push({
+          categoria: "",
+          genero: "",
+        });
+      }
+    }
+  };
+  handleCategorias();
+
   return (
     <>
       <div className="mt-5">
@@ -15,13 +34,13 @@ export const CanchaInfo = () => {
           Número de canchas
         </label>
         <input
-          min={1}
+          value={canchas}
+          onChange={(e) => setData({ ...data, canchas: e.target.value })}
           type="number"
           id="canchas"
           name="canchas"
-          autoFocus
-          className="font-primary block w-full text-dark"
-          // onChange={handleChangeCanchas}
+          className="font-primary block w-full"
+          min={1}
           required={true}
         />
       </div>
@@ -34,6 +53,10 @@ export const CanchaInfo = () => {
           Número de categorías
         </label>
         <input
+          value={numCategorias}
+          onChange={(e) => {
+            setData({ ...data, numCategorias: e.target.value });
+          }}
           type="number"
           id="numCategorias"
           name="numCategorias"
@@ -51,11 +74,12 @@ export const CanchaInfo = () => {
           Email
         </label>
         <input
+          value={email}
+          onChange={(e) => setData({ ...data, email: e.target.value })}
           type="email"
           id="email"
           name="email"
           className="font-primary block w-full"
-          // onChange={handleEmail}
           required={true}
         />
       </div>

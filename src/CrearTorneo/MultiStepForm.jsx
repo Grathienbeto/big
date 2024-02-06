@@ -7,32 +7,35 @@ import { useState } from "react";
 import { InfoFinal } from "./InfoFinal";
 
 const INITIAL_DATA = {
-  canchas: null,
+  canchas: "",
   email: "",
+  numCategorias: "",
+  categorias: [],
   fechaInicio: "",
   horaInicioI: "",
   horaFinI: "",
   fechaFin: "",
   horaInicioF: "",
   horaFinF: "",
-  categorias: [],
 };
 
 export const MultiStepForm = () => {
   const navigate = useNavigate();
+
   const [data, setData] = useState(INITIAL_DATA);
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultiStepForm([
-      <CanchaInfo key={0} />,
-      <Categoria key={1} />,
-      <Horarios key={2} />,
-      <InfoFinal key={3} />,
+      <CanchaInfo key={0} data={data} setData={setData} />,
+      <Categoria key={1} data={data} setData={setData} />,
+      <Horarios key={2} data={data} setData={setData} />,
+      <InfoFinal key={3} data={data} setData={setData} />,
     ]);
 
   const onSubmit = (e) => {
     e.preventDefault();
     next();
+    console.log(data);
   };
 
   return (
