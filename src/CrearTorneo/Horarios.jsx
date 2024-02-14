@@ -1,3 +1,5 @@
+import PropType from "prop-types";
+
 export const Horarios = ({ data, setData }) => {
   const {
     fechaInicio,
@@ -7,6 +9,7 @@ export const Horarios = ({ data, setData }) => {
     horaInicioF,
     horaFinF,
   } = { ...data };
+
   return (
     <>
       <div>
@@ -25,6 +28,7 @@ export const Horarios = ({ data, setData }) => {
           type="date"
           id="fecha_inicio"
           name="fecha_inicio"
+          min={new Date().toISOString().split("T")[0]}
           className="font-primary block w-full"
           onChange={(e) => setData({ ...data, fechaInicio: e.target.value })}
           required={true}
@@ -78,6 +82,7 @@ export const Horarios = ({ data, setData }) => {
           id="fecha_fin"
           name="fecha_fin"
           className="font-primary block w-full"
+          min={new Date().toISOString().split("T")[0]}
           onChange={(e) => setData({ ...data, fechaFin: e.target.value })}
           required={true}
         />
@@ -119,4 +124,9 @@ export const Horarios = ({ data, setData }) => {
       </div>
     </>
   );
+};
+
+Horarios.propTypes = {
+  data: PropType.object,
+  setData: PropType.func,
 };

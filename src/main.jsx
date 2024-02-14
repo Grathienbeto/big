@@ -1,8 +1,7 @@
 import ReactDOM from "react-dom/client";
-
-import "./index.css";
-
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
 
 import { Root } from "./Routes/Root";
 import { ErrorPage } from "./ErrorPage/ErrorPage";
@@ -11,7 +10,6 @@ import { Contacto } from "./Routes/Contacto";
 import { CrearTorneo } from "./Routes/CrearTorneo";
 import { Ayuda } from "./Routes/Ayuda";
 import { TorneoVista } from "./Routes/TorneoVista";
-import React from "react";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +34,7 @@ const router = createBrowserRouter([
         element: <CrearTorneo />,
       },
       {
-        path: "/torneo/:criptic_id",
+        path: "/evento/:criptic_id",
         element: <TorneoVista />,
       },
     ],

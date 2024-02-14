@@ -26,8 +26,6 @@ export const SingleCategory = (props) => {
           <option value="2">2º</option>
           <option value="1">1º</option>
           <option value="12">S12</option>
-          <option value="14">S14</option>
-          <option value="16">S16</option>
         </select>
       </div>
       <div className="flex items-center mt-5 justify-between">

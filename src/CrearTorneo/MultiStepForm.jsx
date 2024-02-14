@@ -1,9 +1,9 @@
-import { useMultiStepForm } from "../assets/useMultiStepForm";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMultiStepForm } from "../assets/useMultiStepForm";
 import { CanchaInfo } from "./CanchaInfo";
 import { Horarios } from "./Horarios";
 import { Categoria } from "./Categoria";
-import { useState } from "react";
 import { InfoFinal } from "./InfoFinal";
 
 const randomGenerator = () => {
@@ -75,6 +75,12 @@ const randomGenerator = () => {
   for (let i = 0; i < 20; i++) {
     salt += list[Math.floor(Math.random() * list.length)];
   }
+  if (salt !== "") {
+    salt = "";
+    for (let i = 0; i < 20; i++) {
+      salt += list[Math.floor(Math.random() * list.length)];
+    }
+  }
   return salt;
 };
 
@@ -111,13 +117,30 @@ export const MultiStepForm = () => {
     try {
       console.log(JSON.stringify(data));
 
-      const response = await fetch("http://localhost:8080/api/torneos", {
+      const response = await fetch("http://localhost:8080/api/eventos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
+
+      for (let i = 0; i < data.categorias.length; i++) {
+        let categoriaInfo = await fetch(
+          "http://localhost:8080/api/categorias",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              criptic: data.criptic,
+              categoria: data.categorias[i].categoria,
+              genero: data.categorias[i].genero,
+            }),
+          }
+        );
+      }
 
       if (response.ok) {
         console.log("Form submitted successfully");
@@ -129,7 +152,7 @@ export const MultiStepForm = () => {
     }
 
     // CAMBIAR LINK A LA PAGINA DE AGREGAR PAREJAS
-    navigate(`/torneo/${data.criptic}`);
+    navigate(`/evento/${data.criptic}`);
   };
 
   const onSubmit = (e) => {
