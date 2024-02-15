@@ -1,3 +1,5 @@
+// Hecho en el primer sprint.
+// Deprecado
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

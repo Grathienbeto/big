@@ -3,6 +3,7 @@ import PropType from "prop-types";
 export const CanchaInfo = ({ data, setData }) => {
   const { canchas, numCategorias, email, categorias } = { ...data };
 
+  // Toma el input de la cantidad de categorias, y agrega tantas como ingresadas. Lo hago aca para facilitar el renderizado en la pagina siguiente
   const handleCategorias = () => {
     while (categorias.length > 0) {
       categorias.pop();
@@ -43,6 +44,7 @@ export const CanchaInfo = ({ data, setData }) => {
           name="canchas"
           className="font-primary block w-full"
           min={1}
+          max={12}
           required={true}
         />
       </div>
@@ -64,6 +66,7 @@ export const CanchaInfo = ({ data, setData }) => {
           name="numCategorias"
           className="font-primary block w-full"
           min={1}
+          max={12}
           required={true}
         />
       </div>

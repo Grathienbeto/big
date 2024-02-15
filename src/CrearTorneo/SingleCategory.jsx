@@ -18,6 +18,8 @@ export const SingleCategory = (props) => {
         </label>
         <select name={`categoria${i}`} onChange={handleChangeCategoria}>
           <option value=""></option>
+          <option value="9">Principiante</option>
+          <option value="8">8º</option>
           <option value="7">7º</option>
           <option value="6">6º</option>
           <option value="5">5º</option>

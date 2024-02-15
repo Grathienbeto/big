@@ -30,7 +30,9 @@ export const Horarios = ({ data, setData }) => {
           name="fecha_inicio"
           min={new Date().toISOString().split("T")[0]}
           className="font-primary block w-full"
-          onChange={(e) => setData({ ...data, fechaInicio: e.target.value })}
+          onChange={(e) => {
+            setData({ ...data, fechaInicio: e.target.value });
+          }}
           required={true}
         />
       </div>
@@ -84,7 +86,6 @@ export const Horarios = ({ data, setData }) => {
           className="font-primary block w-full"
           min={new Date().toISOString().split("T")[0]}
           onChange={(e) => setData({ ...data, fechaFin: e.target.value })}
-          required={true}
         />
       </div>
 

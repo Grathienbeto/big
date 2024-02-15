@@ -31,5 +31,6 @@ export function useMultiStepForm(steps) {
     steps,
     isLastStep: currentStepIndex === steps.length - 1,
     isFirstStep: currentStepIndex === 0,
+    isHorario: currentStepIndex === 2,
   };
 }

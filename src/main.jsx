@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         element: <CrearTorneo />,
       },
       {
-        path: "/evento/:criptic_id",
+        path: "/eventos/:criptic_id",
         element: <TorneoVista />,
       },
     ],

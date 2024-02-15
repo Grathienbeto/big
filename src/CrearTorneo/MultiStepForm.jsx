@@ -6,6 +6,7 @@ import { Horarios } from "./Horarios";
 import { Categoria } from "./Categoria";
 import { InfoFinal } from "./InfoFinal";
 
+// Para generar el id aleatorio
 const randomGenerator = () => {
   let salt = "";
   const list = [
@@ -84,6 +85,7 @@ const randomGenerator = () => {
   return salt;
 };
 
+// Objeto inicial
 const INITIAL_DATA = {
   criptic: randomGenerator(),
   canchas: "",
@@ -103,20 +105,32 @@ export const MultiStepForm = () => {
 
   const [data, setData] = useState(INITIAL_DATA);
 
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    useMultiStepForm([
-      <CanchaInfo key={0} data={data} setData={setData} />,
-      <Categoria key={1} data={data} />,
-      <Horarios key={2} data={data} setData={setData} />,
-      <InfoFinal key={3} data={data} />,
-    ]);
+  // Importa todo lo necesario del custo hook multiStepForm
+  // En la lista del state del hook, estan todas las paginas del formulario
+  const {
+    steps,
+    currentStepIndex,
+    step,
+    isFirstStep,
+    isLastStep,
+    isHorario,
+    back,
+    next,
+  } = useMultiStepForm([
+    <CanchaInfo key={0} data={data} setData={setData} />,
+    <Categoria key={1} data={data} />,
+    <Horarios key={2} data={data} setData={setData} />,
+    <InfoFinal key={3} data={data} />,
+  ]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      // Eliminar clg despues del segundo sprint
       console.log(JSON.stringify(data));
 
+      // Agrega el evento a la base de datos
       const response = await fetch("http://localhost:8080/api/eventos", {
         method: "POST",
         headers: {
@@ -125,6 +139,7 @@ export const MultiStepForm = () => {
         body: JSON.stringify(data),
       });
 
+      // Bucle para agregar todas las categorias a la base de datos
       for (let i = 0; i < data.categorias.length; i++) {
         let categoriaInfo = await fetch(
           "http://localhost:8080/api/categorias",
@@ -151,13 +166,27 @@ export const MultiStepForm = () => {
       console.error("Error submiting form: ", error);
     }
 
-    // CAMBIAR LINK A LA PAGINA DE AGREGAR PAREJAS
-    navigate(`/evento/${data.criptic}`);
+    // Redirecciona a la pagina del evento creado, usando la clave aleatoria
+    navigate(`/eventos/${data.criptic}`);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!isLastStep) {
+
+    // Bloque para corroborar q la fecha fin pase la semana de la fecha de inicio
+    if (isHorario) {
+      let inicio = new Date(data.fechaInicio);
+      let fin = new Date(data.fechaFin);
+      let difference = fin - inicio;
+      let days = Math.ceil(difference / (1000 * 3600 * 24));
+      if (days <= 7 && days >= 0) {
+        next();
+      } else if (data.fechaFin === "") {
+        setData({ ...data, fechaFin: data.fechaInicio });
+      } else {
+        alert("La fecha final no puede ser mayor a dos dias.");
+      }
+    } else if (!isLastStep) {
       next();
     } else {
       handleSubmit(e);

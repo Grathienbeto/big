@@ -15,7 +15,9 @@ export const InfoFinal = ({ data }) => {
   } = { ...data };
   return (
     <div className="mt-5 font-primary">
-      <h2 className="text-2xl text-light text-center">Información Final</h2>
+      <h2 className="text-2xl text-light text-center">
+        Información Fase Zonas
+      </h2>
       <div className="flex justify-between text-lg mt-5">
         <p className="text-primaryLight">Canchas: </p>
         <p className="text-light">{canchas}</p>
