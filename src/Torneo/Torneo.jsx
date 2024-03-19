@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Categorias } from "./Categorias";
 import { DisplayParejas } from "./DisplayParejas";
 import { AgregarParejas } from "./AgregarParejas";
-import { Pareja } from "./Pareja";
+import { Botonera } from "./Botonera";
 
 export const Torneo = () => {
   const { criptic_id } = useParams();
@@ -13,10 +13,13 @@ export const Torneo = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
+  // active tira un numero del 0 a categoria.length
   const [active, setActive] = useState(0);
   const [torneo, setTorneo] = useState();
   const [categoria, setCategoria] = useState([]);
   const [parejas, setParejas] = useState([]);
+
+  const [display, setDisplay] = useState(true);
 
   // hook para buscar la info de la base de datos sobre el TORNEO y las categorias
   useEffect(() => {
@@ -51,6 +54,7 @@ export const Torneo = () => {
   // fx que se encarga de usar un fetch para buscar las parejas de la categoria seleccionada
   const handleSearch = (i) => {
     setActive(i);
+    setDisplay(true);
 
     const fetchParejas = async () => {
       try {
@@ -85,6 +89,12 @@ export const Torneo = () => {
     fetchParejas();
   }, [active, categoria]);
 
+  const handleAgregarACategoria = () => {
+    setDisplay(false);
+    console.log(active);
+    console.log(categoria[active]);
+  };
+
   if (loading) {
     return <h2 className="text-light text-2xl font-primary">Loading...</h2>;
   }
@@ -93,6 +103,7 @@ export const Torneo = () => {
     <div className="p-5">
       <h2 className="text-light text-2xl font-primary">Evento</h2>
 
+      {/* Display categorias */}
       <div className="flex gap-4">
         {categoria.map((elem, i) => (
           <Categorias
@@ -106,41 +117,24 @@ export const Torneo = () => {
         ))}
       </div>
 
-      {/* <DisplayParejas /> */}
-      {parejas.length > 0 ? (
-        <div>
-          {parejas.length > 0}
-          {parejas.map((elem, i) => (
-            <Pareja i={i} key={i} elem={elem} />
-          ))}
-        </div>
-      ) : (
-        <div className="mt-3">
-          <h2 className="text-light">No hay parejas inscriptas</h2>
-        </div>
-      )}
-
-      {/* Aca tiene q ir el boton de Agregar Parejas */}
-
+      {/* Se encarga de mostrar todas las parejas de la categoria */}
       {/* Aca tiene que aparecer el formulario para agregar las parejas */}
-      <AgregarParejas />
+      {display ? <DisplayParejas parejas={parejas} /> : <AgregarParejas />}
 
       {/* Aca tiene que ir boton de Generar torneo */}
+      {display ? (
+        <Botonera handleAgregarACategoria={handleAgregarACategoria} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
 
 // Notas
 /* 
-  HECHO 1. Crear un state => const [active, setActive] = useState()
-  HECHO Este state permite darle estilos distintos al boton de la categoria activa.
-         Ademas, se renderizaran las parejas agregadas a la categoria activa.
-
   http://localhost:8080/api/parejas/search/findAllByCategoriaId?categoriaId={categoriaId}
   Link para buscar las parejas de la categoria
-
-  Buscar en el curso fullstack, el componente que era la barra de busqueda de libros. Eso tenia como re renderizar usando useEffect
-  cuando se cambiaba un estado
 
 */
 

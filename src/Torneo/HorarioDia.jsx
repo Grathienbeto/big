@@ -22,5 +22,5 @@ export const HorarioDia = (props) => {
 };
 
 HorarioDia.propTypes = {
-  dia: PropType.string,
+  dia: PropType.number,
 };

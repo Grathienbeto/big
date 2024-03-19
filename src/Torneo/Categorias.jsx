@@ -5,19 +5,21 @@ export const Categorias = (props) => {
 
   return (
     <div>
-      <button
-        className={`flex text-lg px-2 rounded-md w-14 text-center ${
-          active === i
-            ? "bg-light text-primaryDark font-bold"
-            : "bg-dark text-light"
-        }`}
-        onClick={() => {
-          handleSearch(i);
-        }}
-      >
-        <h2 className=" font-primary">{elem.categoria}º</h2>
-        <h2 className=" font-primary">{elem.genero}</h2>
-      </button>
+      <div>
+        <button
+          className={`flex text-lg px-2 rounded-md w-14 text-center ${
+            active === i
+              ? "bg-light text-primaryDark font-bold"
+              : "bg-dark text-light"
+          }`}
+          onClick={() => {
+            handleSearch(i);
+          }}
+        >
+          <h2 className=" font-primary">{elem.categoria}º</h2>
+          <h2 className=" font-primary">{elem.genero}</h2>
+        </button>
+      </div>
     </div>
   );
 };
