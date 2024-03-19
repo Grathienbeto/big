@@ -1,9 +1,7 @@
 import { Torneo } from "../Torneo/Torneo";
 
-export const TorneoVista = () => {
-  return (
-    <div>
-      <Torneo />
-    </div>
-  );
-};
+export const TorneoVista = () => (
+  <div>
+    <Torneo />
+  </div>
+);
