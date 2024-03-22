@@ -1,6 +1,26 @@
 import PropType from "prop-types";
 export const HorarioDia = (props) => {
-  const { dia } = props;
+  const { dia, parejaFinal, setParejaFinal } = props;
+
+  let extension = "";
+  switch (dia) {
+    case 1:
+      extension = "uno";
+      break;
+    case 2:
+      extension = "dos";
+      break;
+    case 3:
+      extension = "tre";
+      break;
+    case 4:
+      extension = "cua";
+      break;
+    case 5:
+      extension = "cin";
+      break;
+  }
+
   return (
     <div className="mt-3">
       <h4 htmlFor="time1" className="text-light">
@@ -11,11 +31,32 @@ export const HorarioDia = (props) => {
         <label htmlFor="time1" className="text-light text-xs">
           Inicio
         </label>
-        <input type="time" id="time1" name="time1" />
+        <input
+          type="time"
+          id={`horarioI${extension}`}
+          name={`horarioI${extension}`}
+          onChange={(e) =>
+            setParejaFinal({
+              ...parejaFinal,
+              [`horarioI${extension}`]: e.target.value,
+            })
+          }
+          // horarioIuno
+        />
         <label htmlFor="time2" className="text-light text-xs">
           Fin
         </label>
-        <input type="time" id="time2" name="time2" />
+        <input
+          type="time"
+          id={`horarioF${extension}`}
+          name={`horarioF${extension}`}
+          onChange={(e) =>
+            setParejaFinal({
+              ...parejaFinal,
+              [`horarioF${extension}`]: e.target.value,
+            })
+          }
+        />
       </div>
     </div>
   );

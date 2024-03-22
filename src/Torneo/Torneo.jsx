@@ -18,6 +18,7 @@ export const Torneo = () => {
   const [torneo, setTorneo] = useState();
   const [categoria, setCategoria] = useState([]);
   const [parejas, setParejas] = useState([]);
+  const [dateDiff, setDateDiff] = useState(0);
 
   const [display, setDisplay] = useState(true);
 
@@ -51,6 +52,24 @@ export const Torneo = () => {
     setLoading(false);
   }, [criptic_id, error]);
 
+  // Ya no estaria cargando info de entrada, solo cuando el usuario apreta el boton de la categoria
+  useEffect(() => {
+    const fetchParejas = async () => {
+      setParejas([]);
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/parejas/search/findAllByCategoriaId?categoriaId=${categoria[active].id}`
+        );
+        const data = await response.json();
+
+        setParejas([...data._embedded.parejas]);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchParejas();
+  }, [active, categoria]);
+
   // fx que se encarga de usar un fetch para buscar las parejas de la categoria seleccionada
   const handleSearch = (i) => {
     setActive(i);
@@ -71,28 +90,14 @@ export const Torneo = () => {
     fetchParejas();
   };
 
-  // Ya no estaria cargando info de entrada, solo cuando el usuario apreta el boton de la categoria
-  useEffect(() => {
-    const fetchParejas = async () => {
-      setParejas([]);
-      try {
-        const response = await fetch(
-          `http://localhost:8080/api/parejas/search/findAllByCategoriaId?categoriaId=${categoria[active].id}`
-        );
-        const data = await response.json();
-
-        setParejas([...data._embedded.parejas]);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchParejas();
-  }, [active, categoria]);
-
   const handleAgregarACategoria = () => {
     setDisplay(false);
-    console.log(active);
-    console.log(categoria[active]);
+    const fin = torneo.fechaFin.split("T")[0];
+    const ini = torneo.fechaInicio.split("T")[0];
+    const finDate = new Date(fin);
+    const iniDate = new Date(ini);
+    const differenceBetweenDates = (finDate - iniDate) / (1000 * 60 * 60 * 24);
+    setDateDiff(differenceBetweenDates);
   };
 
   if (loading) {
@@ -119,7 +124,15 @@ export const Torneo = () => {
 
       {/* Se encarga de mostrar todas las parejas de la categoria */}
       {/* Aca tiene que aparecer el formulario para agregar las parejas */}
-      {display ? <DisplayParejas parejas={parejas} /> : <AgregarParejas />}
+      {display ? (
+        <DisplayParejas parejas={parejas} />
+      ) : (
+        <AgregarParejas
+          dateDiff={dateDiff}
+          categoria={categoria[active]}
+          setDisplay={setDisplay}
+        />
+      )}
 
       {/* Aca tiene que ir boton de Generar torneo */}
       {display ? (
@@ -137,5 +150,3 @@ export const Torneo = () => {
   Link para buscar las parejas de la categoria
 
 */
-
-// `http://localhost:8080/api/parejas/search/findAllByCategoriaId?categoriaId=${categoriaId}`
