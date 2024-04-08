@@ -1,7 +1,14 @@
+import PropType from "prop-types";
 import { useState } from "react";
 import { AgregarParejasForm } from "./AgregarParejasForm";
 
-export const AgregarParejas = ({ dateDiff, categoria, setDisplay }) => {
+export const AgregarParejas = ({
+  dateDiff,
+  categoria,
+  handleSearch,
+  active,
+  setActive,
+}) => {
   const initialDataPareja = {
     categoriaId: categoria.id,
     criptic: categoria.criptic,
@@ -28,8 +35,15 @@ export const AgregarParejas = ({ dateDiff, categoria, setDisplay }) => {
         dateDiff={dateDiff}
         parejaFinal={parejaFinal}
         setParejaFinal={setParejaFinal}
-        setDisplay={setDisplay}
+        handleSearch={handleSearch}
       />
     </div>
   );
+};
+
+AgregarParejas.propTypes = {
+  dateDiff: PropType.number,
+  categoria: PropType.string,
+  setDisplay: PropType.func,
+  handleSearch: PropType.func,
 };

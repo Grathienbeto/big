@@ -1,14 +1,14 @@
 import PropType from "prop-types";
 import { Pareja } from "./Pareja";
 
-export const DisplayParejas = ({ parejas }) => {
+export const DisplayParejas = ({ parejas, handleSearch }) => {
   return (
     <div>
       {parejas.length > 0 ? (
         <div>
           {parejas.length > 0}
           {parejas.map((elem, i) => (
-            <Pareja i={i} key={i} elem={elem} />
+            <Pareja i={i} key={i} elem={elem} handleSearch={handleSearch} />
           ))}
         </div>
       ) : (

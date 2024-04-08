@@ -1,24 +1,19 @@
+import PropType from "prop-types";
 import { HorarioDia } from "./HorarioDia";
-import { useNavigate } from "react-router-dom";
 
 export const AgregarParejasForm = ({
   dateDiff,
   parejaFinal,
   setParejaFinal,
-  setDisplay,
+  handleSearch,
 }) => {
-  const n = dateDiff;
-
-  const navigate = useNavigate();
+  const n = dateDiff + 1;
 
   //---------------------------------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Eliminar clg despues del segundo sprint
-      console.log(JSON.stringify(parejaFinal));
-
       // Agrega el evento a la base de datos
       const response = await fetch("http://localhost:8080/api/parejas", {
         method: "POST",
@@ -37,19 +32,11 @@ export const AgregarParejasForm = ({
       console.error("Error submiting form: ", error);
     }
 
-    // Redirecciona a la pagina del evento creado, usando la clave aleatoria
-    navigate(`/eventos/${parejaFinal.criptic}`);
-  };
-  //---------------------------------------------------------
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    handleSubmit(e);
-    setDisplay(true);
+    handleSearch();
   };
 
   return (
-    <form id="agregarParejasForm" onSubmit={onSubmit}>
+    <form id="agregarParejasForm" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="apellidoUno" className="text-light text-sm block">
           Apellido Jugador 1
@@ -130,4 +117,11 @@ export const AgregarParejasForm = ({
       </div>
     </form>
   );
+};
+
+AgregarParejasForm.propTypes = {
+  dateDiff: PropType.number,
+  parejaFinal: PropType.object,
+  setParejaFinal: PropType.func,
+  handleSearch: PropType.func,
 };

@@ -64,4 +64,6 @@ export const HorarioDia = (props) => {
 
 HorarioDia.propTypes = {
   dia: PropType.number,
+  parejaFinal: PropType.object,
+  setParejaFinal: PropType.func,
 };

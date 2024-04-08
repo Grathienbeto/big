@@ -125,12 +125,12 @@ export const Torneo = () => {
       {/* Se encarga de mostrar todas las parejas de la categoria */}
       {/* Aca tiene que aparecer el formulario para agregar las parejas */}
       {display ? (
-        <DisplayParejas parejas={parejas} />
+        <DisplayParejas parejas={parejas} handleSearch={handleSearch} />
       ) : (
         <AgregarParejas
           dateDiff={dateDiff}
           categoria={categoria[active]}
-          setDisplay={setDisplay}
+          handleSearch={handleSearch}
         />
       )}
 
