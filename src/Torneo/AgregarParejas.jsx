@@ -28,7 +28,11 @@ export const AgregarParejas = ({
   };
 
   const [parejaFinal, setParejaFinal] = useState(initialDataPareja);
-  // rama produccion
+
+  const testFunction = () => {
+    console.log("Prueba");
+  };
+
   return (
     <div className="mt-5 font-primary">
       <AgregarParejasForm
