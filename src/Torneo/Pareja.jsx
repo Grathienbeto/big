@@ -1,7 +1,7 @@
 import PropType from "prop-types";
 
 export const Pareja = (props) => {
-  const { i, elem, handleSearch, setUpdating } = props;
+  const { i, elem, setUpdating, setEditPareja } = props;
 
   const handleDelete = async () => {
     const response = await fetch(
@@ -10,12 +10,11 @@ export const Pareja = (props) => {
         method: "DELETE",
       }
     );
-    // handleSearch();
   };
 
   const handleUpdate = () => {
-    console.log(elem);
     setUpdating(true);
+    setEditPareja(elem);
   };
 
   return (

@@ -1,5 +1,7 @@
 import PropType from "prop-types";
+import { useState } from "react";
 import { Pareja } from "./Pareja";
+import { EditarPareja } from "./EditarPareja";
 
 export const DisplayParejas = ({
   parejas,
@@ -7,6 +9,8 @@ export const DisplayParejas = ({
   updating,
   setUpdating,
 }) => {
+  const [editPareja, setEditPareja] = useState({});
+
   return updating === false ? (
     <div>
       {parejas.length > 0 ? (
@@ -18,6 +22,8 @@ export const DisplayParejas = ({
               elem={elem}
               handleSearch={handleSearch}
               setUpdating={setUpdating}
+              setEditPareja={setEditPareja}
+              editPareja={editPareja}
             />
           ))}
         </div>
@@ -28,7 +34,7 @@ export const DisplayParejas = ({
       )}
     </div>
   ) : (
-    <>VERDADERO</>
+    <EditarPareja editPareja={editPareja} setEditPareja={setEditPareja} />
   );
 };
 
