@@ -4,10 +4,10 @@ import { Pareja } from "./Pareja";
 export const DisplayParejas = ({
   parejas,
   handleSearch,
-  display,
-  setDisplay,
+  updating,
+  setUpdating,
 }) => {
-  return (
+  return updating === false ? (
     <div>
       {parejas.length > 0 ? (
         <div>
@@ -17,8 +17,7 @@ export const DisplayParejas = ({
               key={i}
               elem={elem}
               handleSearch={handleSearch}
-              display={display}
-              setDisplay={setDisplay}
+              setUpdating={setUpdating}
             />
           ))}
         </div>
@@ -28,12 +27,20 @@ export const DisplayParejas = ({
         </div>
       )}
     </div>
+  ) : (
+    <>VERDADERO</>
   );
 };
 
 DisplayParejas.propTypes = {
   parejas: PropType.array,
   handleSearch: PropType.func,
-  display: PropType.bool,
-  setDisplay: PropType.func,
+  updating: PropType.bool,
+  setUpdating: PropType.func,
 };
+
+/*
+<>
+
+</>
+*/

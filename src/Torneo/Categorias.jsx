@@ -1,7 +1,7 @@
 import PropType from "prop-types";
 
 export const Categorias = (props) => {
-  const { elem, i, active, handleSearch } = props;
+  const { elem, i, active, handleSearch, setUpdating } = props;
 
   return (
     <div>
@@ -14,6 +14,7 @@ export const Categorias = (props) => {
           }`}
           onClick={() => {
             handleSearch(i);
+            setUpdating(false);
           }}
         >
           <h2 className=" font-primary">{elem.categoria}º</h2>
@@ -30,4 +31,5 @@ Categorias.propTypes = {
   active: PropType.number,
   setActive: PropType.func,
   handleSearch: PropType.func,
+  setUpdating: PropType.func,
 };

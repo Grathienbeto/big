@@ -13,13 +13,14 @@ export const Torneo = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
-  // active tira un numero del 0 a categoria.length
-  const [active, setActive] = useState(0);
   const [torneo, setTorneo] = useState();
   const [categoria, setCategoria] = useState([]);
   const [parejas, setParejas] = useState([]);
+
+  const [active, setActive] = useState(0);
   const [dateDiff, setDateDiff] = useState(0);
   const [display, setDisplay] = useState(true);
+  const [updating, setUpdating] = useState(false);
 
   // hook para buscar la info de la base de datos sobre el TORNEO y las categorias
   useEffect(() => {
@@ -117,6 +118,7 @@ export const Torneo = () => {
             active={active}
             setActive={setActive}
             handleSearch={handleSearch}
+            setUpdating={setUpdating}
           />
         ))}
       </div>
@@ -125,8 +127,8 @@ export const Torneo = () => {
         <DisplayParejas
           parejas={parejas}
           handleSearch={handleSearch}
-          display={display}
-          setDisplay={setDisplay}
+          updating={updating}
+          setUpdating={setUpdating}
         />
       ) : (
         <AgregarParejas
