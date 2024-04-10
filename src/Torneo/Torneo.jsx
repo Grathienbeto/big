@@ -19,7 +19,6 @@ export const Torneo = () => {
   const [categoria, setCategoria] = useState([]);
   const [parejas, setParejas] = useState([]);
   const [dateDiff, setDateDiff] = useState(0);
-
   const [display, setDisplay] = useState(true);
 
   // hook para buscar la info de la base de datos sobre el TORNEO y las categorias
@@ -122,10 +121,13 @@ export const Torneo = () => {
         ))}
       </div>
 
-      {/* Se encarga de mostrar todas las parejas de la categoria */}
-      {/* Aca tiene que aparecer el formulario para agregar las parejas */}
       {display ? (
-        <DisplayParejas parejas={parejas} handleSearch={handleSearch} />
+        <DisplayParejas
+          parejas={parejas}
+          handleSearch={handleSearch}
+          display={display}
+          setDisplay={setDisplay}
+        />
       ) : (
         <AgregarParejas
           dateDiff={dateDiff}
@@ -134,7 +136,6 @@ export const Torneo = () => {
         />
       )}
 
-      {/* Aca tiene que ir boton de Generar torneo */}
       {display ? (
         <Botonera handleAgregarACategoria={handleAgregarACategoria} />
       ) : (

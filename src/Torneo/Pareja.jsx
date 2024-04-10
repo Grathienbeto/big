@@ -1,4 +1,5 @@
 import PropType from "prop-types";
+
 export const Pareja = (props) => {
   const { i, elem, handleSearch } = props;
 
@@ -10,6 +11,10 @@ export const Pareja = (props) => {
       }
     );
     handleSearch();
+  };
+
+  const handleUpdate = () => {
+    console.log(elem);
   };
 
   return (
@@ -28,7 +33,9 @@ export const Pareja = (props) => {
           <button className="border-2 rounded-xl px-2" onClick={handleDelete}>
             Eliminar
           </button>
-          <button className="border-2 rounded-xl px-2">Editar</button>
+          <button className="border-2 rounded-xl px-2" onClick={handleUpdate}>
+            Editar
+          </button>
         </div>
       </div>
     </div>
@@ -39,4 +46,5 @@ Pareja.propTypes = {
   elem: PropType.object,
   i: PropType.number,
   handleSearch: PropType.func,
+  setDisplay: PropType.func,
 };

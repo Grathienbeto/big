@@ -5,11 +5,9 @@ export const AgregarParejasForm = ({
   dateDiff,
   parejaFinal,
   setParejaFinal,
-  handleSearch,
 }) => {
   const n = dateDiff + 1;
 
-  //---------------------------------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,8 +29,6 @@ export const AgregarParejasForm = ({
     } catch (error) {
       console.error("Error submiting form: ", error);
     }
-
-    handleSearch();
   };
 
   return (
@@ -45,6 +41,7 @@ export const AgregarParejasForm = ({
           type="text"
           id="apellidoUno"
           name="apellidoUno"
+          value={parejaFinal.apellidoUno}
           onChange={(e) => {
             setParejaFinal({ ...parejaFinal, apellidoUno: e.target.value });
           }}
@@ -123,5 +120,4 @@ AgregarParejasForm.propTypes = {
   dateDiff: PropType.number,
   parejaFinal: PropType.object,
   setParejaFinal: PropType.func,
-  handleSearch: PropType.func,
 };
