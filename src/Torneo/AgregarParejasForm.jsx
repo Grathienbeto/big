@@ -60,16 +60,18 @@ export const AgregarParejasForm = ({
         />
       </div>
 
-      {Array.apply(null, { length: n }).map((e, i) => (
-        <HorarioDia
-          dia={i + 1}
-          key={i}
-          parejaFinal={parejaFinal}
-          setParejaFinal={setParejaFinal}
-        />
-      ))}
+      <div>
+        {Array.apply(null, { length: n }).map((e, i) => (
+          <HorarioDia
+            dia={i + 1}
+            key={i}
+            parejaFinal={parejaFinal}
+            setParejaFinal={setParejaFinal}
+          />
+        ))}
+      </div>
 
-      <div className="text-light mt-2">
+      <div className="text-light mt-5">
         <h3>Disponibilidad Horaria</h3>
         <div className="flex justify-around">
           <label htmlFor="obligado">Obligado</label>

@@ -1,8 +1,5 @@
-import PropType from "prop-types";
-export const HorarioDia = (props) => {
-  const { dia, parejaFinal, setParejaFinal } = props;
-
-  console.log(parejaFinal);
+export const EditarHorario = (props) => {
+  const { dia, editPareja, setEditPareja } = props;
 
   let extension = "";
   switch (dia) {
@@ -37,10 +34,9 @@ export const HorarioDia = (props) => {
           type="time"
           id={`horarioI${extension}`}
           name={`horarioI${extension}`}
-          value={`horarioI${extension}`}
           onChange={(e) =>
-            setParejaFinal({
-              ...parejaFinal,
+            setEditPareja({
+              ...editPareja,
               [`horarioI${extension}`]: e.target.value,
             })
           }
@@ -53,8 +49,8 @@ export const HorarioDia = (props) => {
           id={`horarioF${extension}`}
           name={`horarioF${extension}`}
           onChange={(e) =>
-            setParejaFinal({
-              ...parejaFinal,
+            setEditPareja({
+              ...editPareja,
               [`horarioF${extension}`]: e.target.value,
             })
           }
@@ -62,10 +58,4 @@ export const HorarioDia = (props) => {
       </div>
     </div>
   );
-};
-
-HorarioDia.propTypes = {
-  dia: PropType.number,
-  parejaFinal: PropType.object,
-  setParejaFinal: PropType.func,
 };

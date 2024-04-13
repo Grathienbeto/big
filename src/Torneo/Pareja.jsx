@@ -1,7 +1,7 @@
 import PropType from "prop-types";
 
 export const Pareja = (props) => {
-  const { i, elem, setUpdating, setEditPareja } = props;
+  const { i, elem, setUpdating, setEditPareja, handleUpdateDateDiff } = props;
 
   const handleDelete = async () => {
     const response = await fetch(
@@ -14,6 +14,7 @@ export const Pareja = (props) => {
 
   const handleUpdate = () => {
     setUpdating(true);
+    handleUpdateDateDiff();
     setEditPareja(elem);
   };
 

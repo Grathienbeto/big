@@ -100,6 +100,15 @@ export const Torneo = () => {
     setDateDiff(differenceBetweenDates);
   };
 
+  const handleUpdateDateDiff = () => {
+    const fin = torneo.fechaFin.split("T")[0];
+    const ini = torneo.fechaInicio.split("T")[0];
+    const finDate = new Date(fin);
+    const iniDate = new Date(ini);
+    const differenceBetweenDates = (finDate - iniDate) / (1000 * 60 * 60 * 24);
+    setDateDiff(differenceBetweenDates);
+  };
+
   if (loading) {
     return <h2 className="text-light text-2xl font-primary">Loading...</h2>;
   }
@@ -129,6 +138,8 @@ export const Torneo = () => {
           handleSearch={handleSearch}
           updating={updating}
           setUpdating={setUpdating}
+          dateDiff={dateDiff}
+          handleUpdateDateDiff={handleUpdateDateDiff}
         />
       ) : (
         <AgregarParejas
