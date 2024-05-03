@@ -1,7 +1,6 @@
 import { EditarHorario } from "./EditarHorario";
 
 export const EditarPareja = ({ editPareja, setEditPareja, dateDiff }) => {
-  console.log(editPareja);
   const n = dateDiff + 1;
 
   const handleSubmit = async (e) => {

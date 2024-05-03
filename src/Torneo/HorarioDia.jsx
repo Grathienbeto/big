@@ -1,9 +1,6 @@
 import PropType from "prop-types";
 export const HorarioDia = (props) => {
   const { dia, parejaFinal, setParejaFinal } = props;
-
-  console.log(parejaFinal);
-
   let extension = "";
   switch (dia) {
     case 1:
@@ -37,7 +34,6 @@ export const HorarioDia = (props) => {
           type="time"
           id={`horarioI${extension}`}
           name={`horarioI${extension}`}
-          value={`horarioI${extension}`}
           onChange={(e) =>
             setParejaFinal({
               ...parejaFinal,
