@@ -10,6 +10,9 @@ export const DisplayParejas = ({
   setUpdating,
   dateDiff,
   handleUpdateDateDiff,
+
+  active,
+  setDisplay,
 }) => {
   const [editPareja, setEditPareja] = useState({});
 
@@ -27,6 +30,10 @@ export const DisplayParejas = ({
               setEditPareja={setEditPareja}
               editPareja={editPareja}
               handleUpdateDateDiff={handleUpdateDateDiff}
+              active={active}
+              //
+              active={active}
+              setDisplay={setDisplay}
             />
           ))}
         </div>
@@ -42,6 +49,11 @@ export const DisplayParejas = ({
       setEditPareja={setEditPareja}
       dateDiff={dateDiff}
       handleUpdateDateDiff={handleUpdateDateDiff}
+      //
+      active={active}
+      setDisplay={setDisplay}
+      handleSearch={handleSearch}
+      setUpdating={setUpdating}
     />
   );
 };

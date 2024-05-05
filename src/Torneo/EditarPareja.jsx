@@ -1,11 +1,18 @@
 import { EditarHorario } from "./EditarHorario";
 
-export const EditarPareja = ({ editPareja, setEditPareja, dateDiff }) => {
+export const EditarPareja = ({
+  editPareja,
+  setEditPareja,
+  dateDiff,
+  active,
+  setDisplay,
+  handleSearch,
+  setUpdating,
+}) => {
   const n = dateDiff + 1;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       // Agrega el evento a la base de datos
       const response = await fetch(
@@ -27,6 +34,10 @@ export const EditarPareja = ({ editPareja, setEditPareja, dateDiff }) => {
     } catch (error) {
       console.error("Error submiting form: ", error);
     }
+
+    setDisplay(true);
+    setUpdating(false);
+    handleSearch(active);
   };
 
   return (

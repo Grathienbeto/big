@@ -20,6 +20,7 @@ export const Torneo = () => {
   const [active, setActive] = useState(0);
   const [dateDiff, setDateDiff] = useState(0);
   const [display, setDisplay] = useState(true);
+
   const [updating, setUpdating] = useState(false);
 
   // hook para buscar la info de la base de datos sobre el TORNEO y las categorias
@@ -135,16 +136,19 @@ export const Torneo = () => {
         <DisplayParejas
           parejas={parejas}
           handleSearch={handleSearch}
+          //
           updating={updating}
           setUpdating={setUpdating}
           dateDiff={dateDiff}
           handleUpdateDateDiff={handleUpdateDateDiff}
+          //
+          active={active}
+          setDisplay={setDisplay}
         />
       ) : (
         <AgregarParejas
           dateDiff={dateDiff}
           categoria={categoria[active]}
-          //
           handleSearch={handleSearch}
           active={active}
           setDisplay={setDisplay}
