@@ -5,6 +5,10 @@ export const AgregarParejasForm = ({
   dateDiff,
   parejaFinal,
   setParejaFinal,
+  //
+  handleSearch,
+  active,
+  setDisplay,
 }) => {
   const n = dateDiff + 1;
 
@@ -29,6 +33,9 @@ export const AgregarParejasForm = ({
     } catch (error) {
       console.error("Error submiting form: ", error);
     }
+
+    setDisplay(true);
+    handleSearch(active);
   };
 
   return (

@@ -52,7 +52,6 @@ export const Torneo = () => {
     setLoading(false);
   }, [criptic_id, error]);
 
-  // Ya no estaria cargando info de entrada, solo cuando el usuario apreta el boton de la categoria
   useEffect(() => {
     const fetchParejas = async () => {
       setParejas([]);
@@ -145,7 +144,10 @@ export const Torneo = () => {
         <AgregarParejas
           dateDiff={dateDiff}
           categoria={categoria[active]}
+          //
           handleSearch={handleSearch}
+          active={active}
+          setDisplay={setDisplay}
         />
       )}
 
